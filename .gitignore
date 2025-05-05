@@ -1,3 +1,5 @@
 # Supabase temp folders
 supabase/.branches
 supabase/.temp
+
+.env.*
