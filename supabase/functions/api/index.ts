@@ -8,9 +8,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 console.log("Hello from Functions!");
 
 Deno.serve(async (req) => {
-  return new Response(
-    "hello world",
-  );
+  return new Response("hello world");
 });
 
 /* To invoke locally:
