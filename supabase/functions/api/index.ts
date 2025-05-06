@@ -1,8 +1,10 @@
 import { Hono } from "https://deno.land/x/hono/mod.ts";
 import { shortPathRouter } from "./routers/shortPathRouter.ts";
+import { cors } from "https://deno.land/x/hono/middleware.ts";
 
 // Hono 인스턴스를 생성하여 애플리케이션을 설정합니다.
 const app = new Hono();
+app.use("*", cors());
 
 // 기본 경로를 "/api"로 설정하고, "/users" 경로에 대해 userRouter를 설정합니다.
 app.basePath("/api").route("/shortPath", shortPathRouter);
