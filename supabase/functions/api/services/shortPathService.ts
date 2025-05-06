@@ -7,8 +7,9 @@ export class ShortPathService {
     this.shortPathRepository = new ShortPathRepository();
   }
 
-  async insertShortPath(shortPath: string, redirectURL: string) {
+  async insertShortPath(redirectURL: string): Promise<string> {
     // TODO: 비즈니스 수준에서 shortPath를 추가
+    return "";
   }
 
   async getRedirectURLByShortPath(shortPath: string): Promise<string> {
