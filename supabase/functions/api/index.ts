@@ -1,16 +1,11 @@
-import { supabase } from "./../lib/supabase.ts";
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { Hono } from "https://deno.land/x/hono/mod.ts";
+import { shortPathRouter } from "./routers/shortPathRouter.ts";
 
-Deno.serve(async (req) => {
-  const { data, error } = await supabase.from("v1_short_paths").insert({
-    redirect_url: "https://example.com",
-    short_path: "example",
-  });
+// Hono 인스턴스를 생성하여 애플리케이션을 설정합니다.
+const app = new Hono();
 
-  if (error) {
-    console.error("Error inserting data:", error);
-    return new Response("Failed to insert data", { status: 500 });
-  }
+// 기본 경로를 "/api"로 설정하고, "/users" 경로에 대해 userRouter를 설정합니다.
+app.basePath("/api").route("/shortPath", shortPathRouter);
 
-  return new Response("Data inserted successfully");
-});
+// 애플리케이션을 시작하여 요청을 수신합니다.
+Deno.serve(app.fetch);
